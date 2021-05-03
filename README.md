@@ -1,2 +1,2 @@
 # check-my-stock
-Python package with minimalistic functionale for checking stock vitals and recent performance 
+Python package with minimalistic functionality for checking stock vitals and recent performance
