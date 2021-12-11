@@ -29,7 +29,7 @@ def create_plot(main_daily_df):
     fig.add_trace(go.Scatter(x=main_daily_df['date'], y=main_daily_df['amat'], name='Applied Materials', mode='lines+markers'))
 
     fig.update_layout(title_text = 'Daily Stock Price Changes',
-                      yaxis_title = 'Stock Price',
+                      yaxis_title = 'Stock Price ($)',
                       xaxis_title = 'Date',
                       height = 600, width = 1200,
                       font=dict(family="Gill Sans", size=16))
