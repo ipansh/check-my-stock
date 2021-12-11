@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    print('Hello!')
+    return print('Hello!')
 
 """
 KEY = os.environ['rapidapi_key']
