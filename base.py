@@ -2,10 +2,10 @@ import pandas as pd
 import requests
 from datetime import datetime
 
-with open('/Users/ilya/Desktop/keys/yahoo_finance.txt','r') as file:
-    key = file.readlines()
+#with open('/Users/ilya/Desktop/keys/yahoo_finance.txt','r') as file:
+#    key = file.readlines()
 
-_KEY_ = key[0]
+#_KEY_ = key[0]
 
 
 def get_json_response(ticker, url):
