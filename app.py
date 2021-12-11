@@ -10,6 +10,7 @@ import base
 
 import os
 
+"""
 KEY = os.environ['rapidapi_key']
 
 #with open('/Users/ilya/Desktop/keys/yahoo_finance.txt','r') as file:
@@ -44,6 +45,7 @@ def home():
     fig.write_html('templates/plotly_page.html', full_html=False, include_plotlyjs='cdn')
 
     return render_template('plotly_page.html') 
+"""
 
 if __name__  == '__main__': 
     app.run(debug=True)
