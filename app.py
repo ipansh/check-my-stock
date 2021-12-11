@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 import pandas as pd
 from plotly import graph_objects as go
 import base
-#import os
+import os
 
 app = Flask(__name__)
 
@@ -10,9 +10,9 @@ app = Flask(__name__)
 def home():
     return 'Hello!'
 
-"""
-KEY = os.environ['rapidapi_key']
+_KEY_ = os.environ['rapidapi_key']
 
+"""
 #with open('/Users/ilya/Desktop/keys/yahoo_finance.txt','r') as file:
 #    key = file.readlines()
 
