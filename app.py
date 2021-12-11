@@ -4,13 +4,14 @@ from plotly import graph_objects as go
 import base
 import os
 
+_KEY_ = os.environ['rapidapi_key']
+
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     return 'Hello!'
 
-_KEY_ = os.environ['rapidapi_key']
 
 """
 #with open('/Users/ilya/Desktop/keys/yahoo_finance.txt','r') as file:
