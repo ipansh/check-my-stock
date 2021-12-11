@@ -14,6 +14,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    """
     main_daily_df = base.get_stock_daily_price('ABBV',30)
     my_tickers = ['EXC','BABA','JD','AMAT']
 
@@ -36,6 +37,7 @@ def home():
 
     #fig.write_html('templates/plotly_page.html', full_html=False, include_plotlyjs='cdn')
 
+    """
     return render_template('plotly_page.html') 
 
 if __name__  == '__main__': 
