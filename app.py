@@ -19,7 +19,6 @@ def home():
         mini_df = base.get_stock_daily_price(ticker,30)
         main_daily_df = main_daily_df.merge(mini_df, left_on = 'date', right_on = 'date')
 
-    """
     fig = go.Figure()
 
     fig.add_trace(go.Scatter(x=main_daily_df['date'], y=main_daily_df['abbv'], name='abbv_%', mode='lines+markers'))
@@ -36,7 +35,6 @@ def home():
     
     #fig.write_html('templates/plotly_page.html', full_html=False, include_plotlyjs='cdn')
 
-    """
     return render_template('plotly_page.html') 
 
 if __name__  == '__main__': 
