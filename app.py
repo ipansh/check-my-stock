@@ -14,7 +14,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    """
     main_daily_df = base.get_stock_daily_price('ABBV',30)
     my_tickers = ['EXC','BABA','JD','AMAT']
 
@@ -35,6 +34,7 @@ def home():
                   xaxis_title = 'Date',
                   height = 600, width = 1200)
 
+    """
     #fig.write_html('templates/plotly_page.html', full_html=False, include_plotlyjs='cdn')
 
     """
