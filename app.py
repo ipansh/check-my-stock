@@ -29,23 +29,33 @@ def create_plot(main_daily_df):
     fig.add_trace(go.Scatter(x=main_daily_df['date'], y=main_daily_df['amat'], name='Applied Materials', mode='lines+markers'))
 
     fig.update_layout(title_text = 'Daily Stock Price Changes',
-                  yaxis_title = 'Stock Price',
-                  xaxis_title = 'Date',
-                  height = 600, width = 1200,
-                  title_font_family="Gill Sans")
+                      yaxis_title = 'Stock Price',
+                      xaxis_title = 'Date',
+                      height = 600, width = 1200,
+                      font=dict(family="Gill Sans", size=16))
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
     return graphJSON
 
-@app.route("/stock_prices")
+@app.route("/")
 def home():
     
     main_daily_df = get_stock_data()
 
     bar = create_plot(main_daily_df)
 
+    return render_template('stock_prices.html', plot=bar)
+
+@app.route("/stock_prices")
+def stock_prices_page():
+    
+    main_daily_df = get_stock_data()
+
+    bar = create_plot(main_daily_df)
+
     return render_template('stock_prices.html', plot=bar) 
+
 
 if __name__  == '__main__': 
     app.run(debug=True)
