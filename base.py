@@ -1,6 +1,10 @@
 import pandas as pd
 import requests
 from datetime import datetime
+import os
+
+_KEY_ = os.environ['rapidapi_key']
+
 
 #with open('/Users/ilya/Desktop/keys/yahoo_finance.txt','r') as file:
 #    key = file.readlines()
