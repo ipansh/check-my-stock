@@ -3,13 +3,13 @@ import requests
 from datetime import datetime
 import os
 
-_KEY_ = os.environ['rapidapi_key']
+#_KEY_ = os.environ['rapidapi_key']
 
 
-#with open('/Users/ilya/Desktop/keys/yahoo_finance.txt','r') as file:
-#    key = file.readlines()
+with open('/Users/ilya/Desktop/keys/yahoo_finance.txt','r') as file:
+    key = file.readlines()
 
-#_KEY_ = key[0]
+_KEY_ = key[0]
 
 
 def get_json_response(ticker, url):
