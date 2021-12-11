@@ -10,6 +10,12 @@ import base
 
 import os
 
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    print('Hello!')
+
 """
 KEY = os.environ['rapidapi_key']
 
@@ -17,8 +23,6 @@ KEY = os.environ['rapidapi_key']
 #    key = file.readlines()
 
 #KEY = key[0]
-
-app = Flask(__name__)
 
 @app.route("/")
 def home():
