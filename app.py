@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    """
+    
     main_daily_df = base.get_stock_daily_price('ABBV',30)
     my_tickers = ['EXC','BABA','JD','AMAT']
 
@@ -22,6 +22,7 @@ def home():
         mini_df = base.get_stock_daily_price(ticker,30)
         main_daily_df = main_daily_df.merge(mini_df, left_on = 'date', right_on = 'date')
 
+    """
     fig = go.Figure()
 
     fig.add_trace(go.Scatter(x=main_daily_df['date'], y=main_daily_df['abbv'], name='abbv_%', mode='lines+markers'))
