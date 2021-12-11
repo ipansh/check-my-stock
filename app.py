@@ -34,7 +34,7 @@ def home():
                   xaxis_title = 'Date',
                   height = 600, width = 1200)
 
-    fig.write_html('templates/plotly_page.html', full_html=False, include_plotlyjs='cdn')
+    #fig.write_html('templates/plotly_page.html', full_html=False, include_plotlyjs='cdn')
 
     return render_template('plotly_page.html') 
 
