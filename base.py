@@ -3,15 +3,15 @@ import requests
 from datetime import datetime
 import os
 
-"""
-_KEY_ = os.environ['rapidapi_key']
-"""
 
+_KEY_ = os.environ['rapidapi_key']
+
+"""
 with open('/Users/ilya/Desktop/keys/yahoo_finance.txt','r') as file:
     key = file.readlines()
 
 _KEY_ = key[0]
-
+"""
 
 def get_json_response(ticker, url):
 
@@ -73,7 +73,7 @@ def get_la_ratio(ticker, quarter_periods):
 
     balance_df = balance_df.append(balance_line, ignore_index = True)
 
-  balance_df.loc[:,'la_ratio'] = round(balance_df['liabilities']/balance_df['assets'],2)
+  balance_df.loc[:,'la_ratio'] = round(balance_df['liabilities']/balance_df['assets'],4)
   balance_df.loc[:,'assets_billion'] = round(balance_df['assets']/1000000000,2)
   balance_df.loc[:,'liabilities_billion'] = round(balance_df['liabilities']/1000000000,2)
   balance_df = balance_df.drop(columns = ['assets','liabilities'])
