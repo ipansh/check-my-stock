@@ -133,5 +133,12 @@ def balance_sheet_page():
     bar = create_balance_sheet_plot(main_df)
     return render_template('balance_sheet.html', plot=bar)
 
+@app.route("/balance_sheet/company", methods = ['POST'])
+def balance_sheet_page():
+    message = [item for item in request.form.values()][0]
+    main_df = get_balance_sheet(message)
+    bar = create_balance_sheet_plot(main_df)
+    return render_template('balance_sheet.html', plot=bar)
+
 if __name__  == '__main__': 
     app.run(debug=True)
