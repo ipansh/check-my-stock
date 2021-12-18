@@ -2,30 +2,37 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "static/styles/style6.css" type = "text/css">
-    <title>My First Dashboard</title>
+    <link rel = "stylesheet" href = "static/styles/style7.css" type = "text/css">
+    <link rel = "shortcut icon" href = "{{ url_for('static', filename = 'stock_favicon.ico') }}  ">
+    <title>My Stock Dashboard</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 </head>
 <body>
     <ul>
         <li><a href="stock_prices">Price Dynamics</a></li>
-        <li><a href="income_statement">Income Statement</a></li>
-        <li><a href="balance_sheet">Balance Sheet</a></li>
-        <li><a href="about.asp">About</a></li>
-      </ul>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Income Statement</a>
+            <div class="dropdown-content">
+              <a href="income_statement_abbv">Abbvie</a>
+              <a href="income_statement_exc">Exelon</a>
+              <a href="income_statement_baba">Alibaba</a>
+              <a href="income_statement_jd">Jindong</a>
+              <a href="income_statement_amat">Applied Materials</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Balance Sheet</a>
+            <div class="dropdown-content">
+              <a href="balance_sheet_abbv">Abbvie</a>
+              <a href="balance_sheet_exc">Exelon</a>
+              <a href="balance_sheet_baba">Alibaba</a>
+              <a href="balance_sheet_jd">Jindong</a>
+              <a href="balance_sheet_amat">Applied Materials</a>
+            </div>
+          </li>
+    </ul>
 <br>
-    <form action="/balance_sheet/company" method="post"></form>
-        <input list="browsers" name="Microsoft" placeholder="mean" required="required">
-        <datalist id="browsers">
-            <option value="Abbvie">
-            <option value="Alibaba">
-            <option value="Jindong">
-            <option value="Applied Materials">
-            <option value="Exelon">
-        </datalist>
-        <input type="submit">
-    </form>
 <div class="container">
     <div class="row">
         <div class="col-xs-3">
@@ -33,7 +40,7 @@
         <div class="col-md-6">
             <div class="chart" id="bargraph">
                 <script>
-                    var graphs = {{plot | safe}};
+                    var graphs = {{plot1 | safe}};
                     Plotly.plot('bargraph',graphs,{});
                 </script>
             </div>

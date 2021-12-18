@@ -39,7 +39,7 @@ def create_stock_plot(main_daily_df):
     fig.add_trace(go.Scatter(x=main_daily_df['date'], y=main_daily_df['jd'], name='Jindong', mode='lines+markers'))
     fig.add_trace(go.Scatter(x=main_daily_df['date'], y=main_daily_df['amat'], name='Applied Materials', mode='lines+markers'))
 
-    fig.update_layout(title_text = 'Daily Stock Price Changes',
+    fig.update_layout(title_text = 'Daily Stock Price Dynamics',
                       yaxis_title = 'Stock Price ($)',
                       xaxis_title = 'Date',
                       height = 600, width = 1200,
@@ -49,7 +49,7 @@ def create_stock_plot(main_daily_df):
 
     return graphJSON
 
-def create_income_satement_plot(data):
+def create_income_satement_plot(data, title_name):
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(go.Bar(x=data['quarter'], y=data['revenue_billion'],
@@ -60,7 +60,7 @@ def create_income_satement_plot(data):
                          name='Net Profit Margin(%)', text = [gpm*100 for gpm in data['net_profit_margin']],
                          texttemplate='%{text:.2f}', hovertemplate='%{text:.2f}'), secondary_y=True)
 
-    fig.update_layout(title_text = 'Quarterly Income Statement',
+    fig.update_layout(title_text = title_name,
                   xaxis_title = 'Quarter',
                   height = 600, width = 1200,
                   font=dict(family="Gill Sans", size=16))
@@ -76,7 +76,7 @@ def create_income_satement_plot(data):
 
     return graphJSON
 
-def create_balance_sheet_plot(data):
+def create_balance_sheet_plot(data, title_name):
     
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -92,10 +92,10 @@ def create_balance_sheet_plot(data):
                             name='LA Ratio(%)', text = [la_ratio*100 for la_ratio in data['la_ratio']],
                             texttemplate='%{text:.1f}', hovertemplate='%{text:.2f}'), secondary_y=True)
 
-    fig.update_layout(title_text = 'Quarterly Balance Sheet',
-                    xaxis_title = 'Quarter',
-                    height = 600, width = 1200,
-                    font=dict(family="Gill Sans", size=16))
+    fig.update_layout(title = title_name,
+                      xaxis_title = 'Quarter',
+                      height = 600, width = 1200,
+                      font=dict(family="Gill Sans", size=16))
 
     fig.update_xaxes(dtick="M3")
 
@@ -121,24 +121,80 @@ def stock_prices_page():
     bar = create_stock_plot(main_daily_df)
     return render_template('stock_prices.html', plot=bar)
 
+
+### INCOME STATEMENT PAGES ###
 @app.route("/income_statement")
 def income_statement_page():
     main_df = get_and_process_income_statement('MSFT')
-    bar = create_income_satement_plot(main_df)
+    bar = create_income_satement_plot(main_df, 'Microsoft')
     return render_template('income_statement.html', plot=bar)
 
+@app.route("/income_statement_abbv")
+def income_statement_abbv():
+    main_df = get_and_process_income_statement('ABBV')
+    bar = create_income_satement_plot(main_df, 'Abbvie')
+    return render_template('income_statement.html', plot=bar)
+
+@app.route("/income_statement_exc")
+def income_statement_exc():
+    main_df = get_and_process_income_statement('EXC')
+    bar = create_income_satement_plot(main_df, 'Exelon')
+    return render_template('income_statement.html', plot=bar)
+
+@app.route("/income_statement_baba")
+def income_statement_baba():
+    main_df = get_and_process_income_statement('BABA')
+    bar = create_income_satement_plot(main_df, 'Alibaba')
+    return render_template('income_statement.html', plot=bar)
+
+@app.route("/income_statement_jd")
+def income_statement_jd():
+    main_df = get_and_process_income_statement('JD')
+    bar = create_income_satement_plot(main_df, 'Jindong')
+    return render_template('income_statement.html', plot=bar)
+
+@app.route("/income_statement_amat")
+def income_statement_amat():
+    main_df = get_and_process_income_statement('AMAT')
+    bar = create_income_satement_plot(main_df, 'Applied Materials')
+    return render_template('income_statement.html', plot=bar)
+
+### BALANCE SHEETS ###
 @app.route("/balance_sheet")
 def balance_sheet_page():
     main_df = get_balance_sheet('MSFT')
-    bar = create_balance_sheet_plot(main_df)
-    return render_template('balance_sheet.html', plot=bar)
+    bar = create_balance_sheet_plot(main_df, 'Microsoft')
+    return render_template('balance_sheet.html', plot1=bar)
 
-@app.route("/balance_sheet/company", methods = ['POST'])
-def balance_sheet_page():
-    message = [item for item in request.form.values()][0]
-    main_df = get_balance_sheet(message)
-    bar = create_balance_sheet_plot(main_df)
-    return render_template('balance_sheet.html', plot=bar)
+@app.route("/balance_sheet_abbv")
+def balance_sheet_abbv():
+    main_df = get_balance_sheet('ABBV')
+    bar = create_balance_sheet_plot(main_df, 'Abbvie')
+    return render_template('balance_sheet.html', plot1=bar)
+
+@app.route("/balance_sheet_exc")
+def balance_sheet_exc():
+    main_df = get_balance_sheet('EXC')
+    bar = create_balance_sheet_plot(main_df, 'Exelon')
+    return render_template('balance_sheet.html', plot1=bar)
+
+@app.route("/balance_sheet_baba")
+def balance_sheet_baba():
+    main_df = get_balance_sheet('BABA')
+    bar = create_balance_sheet_plot(main_df, 'Alibaba')
+    return render_template('balance_sheet.html', plot1=bar)
+
+@app.route("/balance_sheet_jd")
+def balance_sheet_jd():
+    main_df = get_balance_sheet('JD')
+    bar = create_balance_sheet_plot(main_df, 'Jingdong')
+    return render_template('balance_sheet.html', plot1=bar)
+
+@app.route("/balance_sheet_amat")
+def balance_sheet_amat():
+    main_df = get_balance_sheet('AMAT')
+    bar = create_balance_sheet_plot(main_df, 'Applied Materials')
+    return render_template('balance_sheet.html', plot1=bar)
 
 if __name__  == '__main__': 
     app.run(debug=True)
